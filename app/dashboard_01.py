@@ -46,7 +46,7 @@ def main():
         st.subheader("📋 Dados Recentes")
         st.dataframe(df)
 
-        df['timestamp'] = pd.to_datetime(df['timestamp'])
+        df['timestamp'] = pd.to_datetime(df['timestamp'], utc=True) # df['timestamp'] = pd.to_datetime(df['timestamp'])
         df['valor'] = pd.to_numeric(df['valor'], errors='coerce')  # CONVERSÃO AQUI
         df = df.sort_values(by='timestamp')
         
