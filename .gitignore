@@ -1,0 +1,27 @@
+# Ignorar ambientes virtuais, caches e variáveis sensíveis
+.venv/
+.env
+__pycache__/
+
+# Ignorar arquivos temporários e logs
+*.log
+*.tmp
+*.pyc
+
+# Ignorar pastas de configuração de IDEs
+.vscode/
+.idea/
+
+# Ignorar arquivos de teste antigos na pasta src/
+src/pipeline_00.py
+src/pipeline_01.py
+src/pipeline_03.py
+
+# Ignorar arquivos de teste ou rascunho no app/
+app/dashboard_00.py
+
+# Opcional: Ignora tudo em exemplos, se só contiver testes
+exemplos/
+
+
+
