@@ -89,5 +89,5 @@ streamlit run dashboard/app.py
 
 ---
 
-**Autor:** [Seu Nome ou GitHub]  
+**Autor:** mariobaeta  
 **Licença:** MIT
