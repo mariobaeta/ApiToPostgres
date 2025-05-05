@@ -21,10 +21,8 @@ Este projeto realiza um processo **ETL (Extract, Transform, Load)** de dados do 
 ├── src/
 │   ├── pipeline_02.py       # Script principal ETL com extração da API, transformação e carga no banco
 │   └── database.py          # Definições de modelo ORM e conexão com o PostgreSQL
-├── dashboard/
-│   └── app.py               # Dashboard interativo em Streamlit
-├── exemplos/
-│   └── exemplo_02.py        # Teste simples de extração do preço do Bitcoin
+├── app/
+│   └── dashboard_01.py               # Dashboard interativo em Streamlit
 ├── .env                     # Variáveis de ambiente para conexão segura ao banco
 ├── requirements.txt         # Dependências do projeto
 └── README.md
