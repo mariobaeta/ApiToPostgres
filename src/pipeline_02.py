@@ -10,7 +10,7 @@ from dotenv import load_dotenv
 # Importar Base e BitcoinPreco do database.py
 from database import Base, BitcoinPreco
 
-INTERVALO = int(os.getenv("SLEEP_INTERVAL", 30))  # Padrão: 5 minutos
+INTERVALO = int(os.getenv("SLEEP_INTERVAL", 15))  # Padrão: 5 minutos
 
 
 # Carregar variáveis de ambiente do arquivo .env
