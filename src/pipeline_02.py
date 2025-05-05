@@ -107,9 +107,19 @@ def load(dados):
         except Exception as e:
             session.rollback()
             print(f"Erro ao carregar dados: {e}")
-    
 
+# Substituído o loop infinito while True por execução única.
+# Motivo: GitHub Actions não suporta jobs que rodam continuamente ou indefinidamente.
+# Agora, o pipeline roda uma vez a cada minuto, conforme agendado no workflow (.yml).
+# A cada execução:
+# 1. Cria a tabela se necessário,
+# 2. Extrai os dados da API,
+# 3. Transforma e carrega no banco,
+# 4. Finaliza imediatamente.
+#
+# O bloco abaixo foi substituído:
 
+"""
 if __name__ == "__main__":
     # Crie a tabela no banco de dados
     create_table()
@@ -135,3 +145,33 @@ if __name__ == "__main__":
             dados_json = extract()                
             # Transformar os dados
             time.sleep(INTERVALO)
+"""
+
+# Este bloco __main__ foi adaptado para funcionar em conjunto com o GitHub Actions.
+# Em vez de rodar continuamente (loop infinito), ele executa uma única vez por chamada.
+# Isso se alinha ao agendamento definido no workflow (cron a cada 1 minuto).
+# A sequência é:
+# 1. Cria a tabela (se não existir),
+# 2. Extrai os dados da API,
+# 3. Transforma os dados,
+# 4. Carrega no banco de dados,
+# 5. Encerra a execução (sem time.sleep).
+
+if __name__ == "__main__":
+    try:
+        # Cria a tabela (se ainda não existir)
+        create_table()
+        
+        # Extrai os dados da API
+        dados_json = extract()
+
+        if dados_json:
+            # Transforma os dados
+            dados_transformados = transform(dados_json)
+            print("Dados transformados:", dados_transformados)
+
+            # Carrega no banco de dados
+            load(dados_transformados)
+
+    except Exception as e:
+        print(f"Erro no pipeline: {e}")
